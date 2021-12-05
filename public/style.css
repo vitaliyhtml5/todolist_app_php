@@ -24,7 +24,8 @@ button {
     transition: .4s;
     cursor: pointer;
 }
-.button-primary {
+.button-primary,
+.button-secondary {
     padding: 10px 5px;
     border-radius: 4px;
     color: #f8f8f8;
@@ -37,6 +38,17 @@ button {
 }
 .button-primary:active {
     background-color: #209274;
+}
+.button-secondary {
+    border: 1px solid #209274;
+    color: #3e3e3e;
+    background-color: transparent;
+}
+.button-secondary:hover {
+    background-color: #e8fff2;
+}
+.button-secondary:active {
+    background-color: #bfffdb;
 }
 .container {
     max-width: 1200px;
@@ -109,7 +121,7 @@ main {
 .filter-btn {
     width: 25px;
     height: 25px;
-    color: #575757;
+    color: #6d6d6d;
 }
 .filter-wrap {
     position: absolute;
@@ -283,6 +295,97 @@ main {
 }
 
 
+/* Modal */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(0 0 0/65%);
+}
+.modal {
+    position: absolute;
+    top: 40px;
+    left: 50%;
+    width: 500px;
+    padding: 30px;
+    border-radius: 4px;
+    background-color: #fafafa;
+    transform: translateX(-50%);
+}
+.modal h3 {
+    margin-bottom: 15px;
+    color: #3e3e3e;
+    font-size: 24px;
+    text-align: center;
+}
+.modal label {
+    display: block;
+    margin-bottom: 10px;
+    padding-left: 5px;
+    color: #209274;
+    font-size: 18px;
+    font-weight: 700;
+}
+.modal textarea {
+    display: block;
+    width: 100%;
+    min-height: 80px;
+    margin-bottom: 20px !important;
+    padding: 7px;
+    border: 1px solid #209274;
+    border-radius: 2px;
+    color: inherit;
+    font-family: inherit;
+    font-size: 16px;
+    line-height: 1.3;
+    resize: vertical;
+}
+.modal textarea:focus {
+    border-color: #11664f;
+}
+.modal-btn-wrap {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 35px;
+}
+.modal-btn-wrap button {
+    width: 100px;
+}
+.modal-btn-wrap button:first-child {
+    margin-right: 5px;
+}
+/* Modal remove */
+.modal-remove {
+    width: 420px;
+}
+.modal-remove-text {
+    font-size: 17px;
+    line-height: 1.6;
+}
+.modal-remove-text span {
+    overflow: hidden;
+    display: inline-block;
+    max-width: 90%;
+    color: #209274;
+    font-weight: 700;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    vertical-align: middle;
+}
+.modal-remove .modal-remove-btn {
+    margin-top: 30px;
+}
+.modal-remove-btn .button-primary {
+    background-color: #f16767;
+}
+.modal-remove-btn .button-primary:hover {
+    background-color: #f35c5c;
+}
+.modal-remove-btn .button-primary:active {
+    background-color: #f65555;
+}
 
 
 
