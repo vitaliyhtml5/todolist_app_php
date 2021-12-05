@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do List</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-wrap">
+                <span class="material-icons-outlined">event_note</span>
+                <h1>To Do List</h1>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="container">
+            <div class="tools">
+                <button class="button-primary tools-add-btn"><span class="material-icons-outlined">add_circle_outline</span>Add task</button>
+                <div class="sort-wrap">
+                    <span class="sort-active"><b class="material-icons-outlined arrow">north</b>Sort by creation</span>
+                    <span><b class="material-icons-outlined arrow">north</b>Sort by status</span>
+                </div>
+                <button class="material-icons-outlined filter-btn">filter_alt</button>
+                <div class="filter-wrap">
+                    <h3>Choose status:</h3>
+                    <label><input type="checkbox"><span class="material-icons-outlined">check</span>Incomplete</label>
+                    <label><input type="checkbox"><span class="material-icons-outlined">check</span>Complete</label>
+                    <div class="filter-wrap-btn">
+                        <button class="button-primary">Apply</button>
+                        <button class="button-primary">Cancel</button>
+                    </div>
+                </div>
+            </div>
+            <div class="task-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Task</th>
+                            <th>Comment</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="task-status" title="Mark as complete"></span>Play computer games</td>
+                            <td>Play them all the time</td>
+                            <td>
+                                <ul class="action-list">
+                                    <li class="action-info"><span class="material-icons-outlined">info</span>Info<i>Created in 05.12.2021<br>20:59:12</i></li>
+                                    <li><span class="material-icons-outlined">edit</span>Edit</li>
+                                    <li><span class="material-icons-outlined">delete</span>Remove</li>
+                                </ul>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="paging-wrap">
+                    <button class="button-primary paging-btn-active">1</button>
+                    <button class="button-primary">2</button>
+                    <button class="button-primary">3</button>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script type="module" src="script.js"></script>
+</body>
+</html>
