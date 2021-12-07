@@ -17,6 +17,17 @@ app.get('/get-task', (req, res) => getData.getDataById(req, res));
 const addTask = require('./add_task.js');
 app.post('/add-task', (req, res) => addTask(req, res));
 
+//EDIT
+const editTask = require('./edit_task.js');
+const editStatus = require('./edit_status.js');
+app.put('/edit-task', (req, res) => editTask(req, res));
+app.patch('/edit-status', (req, res) => editStatus(req, res));
+
+//DELETE
+const deleteTask = require('./delete_task.js');
+app.delete('/delete-task', (req, res) => deleteTask(req, res));
+
+//404
 app.get('*/*', (req, res) => res.status(404).send('Page not found'));
 
 app.listen(3000, console.log('Server is running on 3000 port'));

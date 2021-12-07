@@ -1,4 +1,5 @@
 const fs = require('fs');
+const checkData = require('./check_data.js');
 
 // Get All
 const getAllData = (req, res) => {
@@ -20,8 +21,11 @@ const getAllData = (req, res) => {
 const getDataById = (req, res) => {
     try {
         readData(res, './fs/tasks.json', (data) => {
-            const taskIndex = data.findIndex(item => item.id == `${req.query.id}`);
-            if (taskIndex === -1) {
+            const taskIndex = checkData.checkExistedId(data, req.query.id);
+
+            if (req.query.id === undefined || !checkData.checkEmptyData(req.query.id)) {
+                res.status(400).send({code: 400, message: 'id is required'});
+            } else if (taskIndex === -1) {
                 res.send({message: 'task is not exist'});
             } else {
                 res.send(data[taskIndex]);
