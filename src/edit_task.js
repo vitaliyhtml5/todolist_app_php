@@ -9,8 +9,10 @@ const editTask = (req, res) => {
              
             if (req.body.id === undefined || req.body.task === undefined || req.body.comment === undefined || req.body.created === undefined || req.body.status === undefined || !checkData.checkEmptyData(req.body.id, req.body.task, req.body.comment, req.body.created, req.body.status)) {
                 res.status(400).send({code: 400, message: 'some data is missed'});
+            } else if (req.body.status !== 'complete' && req.body.status !== 'incomplete') {
+                res.status(400).send({code: 400, message: 'value of status is incorrect'});
             } else if (taskIndex === -1) {
-                res.send({message: 'task is not exist'});
+                res.send({message: 'task does not exist'});
             } else {
                 rewriteFile(data);
             }

@@ -26,7 +26,7 @@ const getDataById = (req, res) => {
             if (req.query.id === undefined || !checkData.checkEmptyData(req.query.id)) {
                 res.status(400).send({code: 400, message: 'id is required'});
             } else if (taskIndex === -1) {
-                res.send({message: 'task is not exist'});
+                res.send({message: 'task does not exist'});
             } else {
                 res.send(data[taskIndex]);
             }

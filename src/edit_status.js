@@ -6,11 +6,13 @@ const editStatus = (req, res) => {
     try {
         getData.readData(res, './fs/tasks.json', (data) => {
             const taskIndex = checkData.checkExistedId(data, req.body.id);
-            
+
             if (req.body.status === undefined || req.body.id === undefined || !checkData.checkEmptyData(req.body.status, req.body.id)) {
                 res.status(400).send({code: 400, message: 'some data is missed'});
+            } else if (req.body.status !== 'complete' && req.body.status !== 'incomplete') {
+                res.status(400).send({code: 400, message: 'value of status is incorrect'});
             } else if (taskIndex === -1) {
-                res.send({message: 'task is not exist'});
+                res.send({message: 'task does not exist'});
             } else {
                 rewriteFile(data);
             }
