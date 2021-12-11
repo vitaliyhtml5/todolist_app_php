@@ -218,6 +218,9 @@ main {
     background-color: #a5a5a5;
     cursor: pointer;
 }
+.task-status_complete {
+    background-color: #20bb92;
+}
 .action-list {
     display: flex;
     justify-content: center;
@@ -267,6 +270,7 @@ main {
 
 /* Pagination */
 .paging-wrap {
+    position: relative;
     display: flex;
     justify-content: flex-end;
     margin-top: 10px;
@@ -292,6 +296,16 @@ main {
 .paging-btn-active:active {
     background-color: #20bb92 !important;
     cursor: default !important;
+}
+.extra-pagination-next,
+.extra-pagination-prev {
+    color: #3e3e3e;
+    transition: .4s;
+    cursor: pointer;
+}
+.extra-pagination-next:hover,
+.extra-pagination-prev:hover {
+    color: #209274;
 }
 
 
