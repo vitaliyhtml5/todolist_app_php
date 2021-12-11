@@ -20,11 +20,18 @@
         <div class="container">
             <div class="tools">
                 <button class="button-primary tools-add-btn"><span class="material-icons-outlined">add_circle_outline</span>Add task</button>
-                <div class="sort-wrap">
-                    <span class="sort-active"><b class="material-icons-outlined arrow">north</b>Sort by creation</span>
-                    <span><b class="material-icons-outlined arrow">north</b>Sort by status</span>
+                <div class="search-wrap">
+                    <span class="material-icons-outlined">search</span>
+                    <input id="search-field" type="text">
+                    <button>X</button>
                 </div>
-                <button class="material-icons-outlined filter-btn">filter_alt</button>
+                <div class="sort-wrap">
+                    <span>Sort by creation<b class="material-icons-outlined arrow sort-active">north</b></span>
+                </div>
+                <button class="filter-btn">
+                    <span class="material-icons-outlined">filter_alt</span>
+                    <b></b>
+                </button>
                 <div class="filter-wrap">
                     <h3>Choose status:</h3>
                     <label><input type="checkbox"><span class="material-icons-outlined">check</span>Incomplete</label>
@@ -50,8 +57,8 @@
             </div>
         </div>
     </main>
-    <div class="overlay" style="display: none;">
-        <div class="modal modal-remove">
+    <div class="overlay">
+        <!-- <div class="modal modal-remove"> -->
             <!-- <h3>Create task</h3>
             <label>Title:</label>
             <textarea autofocus></textarea>
@@ -66,7 +73,7 @@
                 <button class="button-primary">Remove</button>
                 <button class="button-secondary">Cancel</button>
             </div> -->
-        </div>
+        <!-- </div> -->
     </div>
     <script type="module" src="script.js"></script>
 </body>

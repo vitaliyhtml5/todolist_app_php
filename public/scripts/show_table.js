@@ -1,34 +1,50 @@
-'use strict'
+'use strict';
+
+import {setFilter,applyFilter} from './set_filter.js';
 
 const showTable = data => {
     const tbody = document.querySelector('#tbody-main');
     const paginationWrap = document.querySelector('.paging-wrap');
     const start = 0;
     const end = 10;
+    const allTasks = data;
     let status;
+    tbody.innerHTML = ``;
+    paginationWrap.innerHTML = ``;
 
     createTable(start, end);
     makePagination();
+    applyFilter(allTasks);
+
     function createTable(start, end) {
+        data = setFilter(allTasks);
+        
+        // if (data.length === 0) empty state !!!!!
+        if (data.length < 10)  end = data.length;
+
         for (let i = start; i < end; i++) {
-            if (data[i].status === 'incomplete') {
+            setStatus(data[i].status);
+    
+            tbody.innerHTML += 
+            `<tr>
+                <td>${status}${data[i].task}</td>
+                <td>${data[i].comment}</td>
+                <td>
+                    <ul class="action-list">
+                        <li class="action-info"><span class="material-icons-outlined">info</span>Info<i>Created at<br>${data[i].created}</i></li>
+                        <li><span class="material-icons-outlined">edit</span>Edit</li>
+                        <li><span class="material-icons-outlined">delete</span>Remove</li>
+                    </ul>
+                </td>
+            </tr>`;
+        }
+
+        function setStatus(statusValue) {
+            if (statusValue === 'incomplete') {
                 status = `<span class="task-status" title="Mark as complete"></span>`;
             } else {
                 status = `<span class="task-status task-status_complete" title="Mark as incomplete"></span>`;
             }
-    
-            tbody.innerHTML += 
-            `<tr>
-            <td>${status}${data[i].task}</td>
-            <td>${data[i].comment}</td>
-            <td>
-                <ul class="action-list">
-                    <li class="action-info"><span class="material-icons-outlined">info</span>Info<i>Created at<br>${data[i].created}</i></li>
-                    <li><span class="material-icons-outlined">edit</span>Edit</li>
-                    <li><span class="material-icons-outlined">delete</span>Remove</li>
-                </ul>
-            </td>
-        </tr>`;
         }
     }
 
