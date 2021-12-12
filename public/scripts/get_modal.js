@@ -1,15 +1,47 @@
 'use strict'
 
+import {addData} from './add_data.js';
+import {editData} from './edit_data.js';
+import {getTask} from './components.js'
+
 const overlay = document.querySelector('.overlay');
-const getModal = data => {
-    document.querySelector('.tools-add-btn').addEventListener('click', addTaskModal);
+const getModal = () => document.querySelector('.tools-add-btn').addEventListener('click', addTaskModal);
+
+const getEditModal = data => {
+    document.querySelectorAll('.edit-task').forEach((el, index) => {
+        el.onclick = () => {
+            const id = document.querySelectorAll('.id-task')[index].textContent;
+            const task = getTask(data, id);
+            editTaskModal(task);
+        }
+    });
+}
+
+const closeOverlay = () => {
+    overlay.style.animation = 'closeModal 0.5s forwards';
+    overlay.innerHTML = ``;
 }
 
 function addTaskModal() {
     createModal('add');
-    const field = document.querySelectorAll('.modal textarea');
     const btnModal = document.querySelectorAll('.modal-btn-wrap button');
-    field[0].focus();
+    document.querySelectorAll('.modal textarea')[0].focus();
+    
+    btnModal[0].addEventListener('click', addData);
+    btnModal[1].addEventListener('click', closeOverlay);
+}
+
+function editTaskModal(taskData) {
+    createModal('edit');
+    const btnModal = document.querySelectorAll('.modal-btn-wrap button');
+    const field = document.querySelectorAll('.modal textarea');
+    const radio = document.querySelectorAll('.edit-radio input');
+
+    field[0].value = taskData.task;
+    field[1].value = taskData.comment;
+    taskData.status === 'incomplete' ? radio[0].checked = true : radio[1].checked = true; 
+
+    btnModal[0].addEventListener('click', () =>  editData(taskData.id));
     btnModal[1].addEventListener('click', closeOverlay);
 }
 
@@ -32,19 +64,41 @@ function createModal(type) {
                 <button class="button-primary">Cancel</button>
             </div>
         </div>`;
+    } else  if (type === 'edit') {
+        overlay.innerHTML = `
+        <div class="modal">
+            <h3>Edit task</h3>
+            <label>Title:
+                <textarea></textarea>
+                <span class="error-message"></span>
+            </label>
+            <label>Comment:
+                <textarea></textarea>
+                <span class="error-message"></span>
+            </label>
+            <label class="edit-radio">
+                <input type="radio" name="status">
+                <span></span>
+                Inomplete
+            </label>
+            <label class="edit-radio">
+                <input type="radio" name="status">
+                <span></span>
+                Complete
+            </label>
+            <div class="modal-btn-wrap">
+                <button class="button-primary">Edit</button>
+                <button class="button-primary">Cancel</button>
+            </div>
+        </div>`;
     }
 }
 
 function showOverlay() {
     overlay.style.animation = 'openModal 1s forwards';
     document.addEventListener('keydown', e => {
-        e.preventDefault();
         if (e.code === 'Escape') closeOverlay();
     });
 }
-function closeOverlay() {
-    overlay.style.animation = 'closeModal 0.5s forwards';
-    overlay.innerHTML = ``;
-}
 
-export {getModal};
+export {getModal,getEditModal,closeOverlay};

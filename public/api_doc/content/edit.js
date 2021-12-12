@@ -23,7 +23,6 @@ const showEditContent = () => `
     "id": 2,
     "task":"Play computer games",
     "comment":"Play them all day long",
-    "created":"05.12.2021 20:59",
     "status": "incomplete"
 }</code>
             <i class="body-comment"><span>*</span> status must be complete or incomplete</i>

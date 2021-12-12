@@ -1,6 +1,8 @@
 'use strict';
 
+import {getDataAPI} from '../script.js';
 import {setFilter,applyFilter} from './set_filter.js';
+import {getEditModal} from './get_modal.js'
 
 const showTable = data => {
     const tbody = document.querySelector('#tbody-main');
@@ -27,17 +29,19 @@ const showTable = data => {
     
             tbody.innerHTML += 
             `<tr>
+                <td class="id-task">${data[i].id}</td>
                 <td>${status}${data[i].task}</td>
                 <td>${data[i].comment}</td>
                 <td>
                     <ul class="action-list">
                         <li class="action-info"><span class="material-icons-outlined">info</span>Info<i>Created at<br>${data[i].created}</i></li>
-                        <li><span class="material-icons-outlined">edit</span>Edit</li>
-                        <li><span class="material-icons-outlined">delete</span>Remove</li>
+                        <li class="edit-task"><span class="material-icons-outlined">edit</span>Edit</li>
+                        <li class="remove-task"><span class="material-icons-outlined">delete</span>Remove</li>
                     </ul>
                 </td>
             </tr>`;
         }
+        getEditModal(data);
 
         function setStatus(statusValue) {
             if (statusValue === 'incomplete') {
@@ -135,4 +139,11 @@ const showTable = data => {
     }
 }
 
-export {showTable};
+const updateTable = () => {
+    document.querySelector('#tbody-main').innerHTML = ``;
+    document.querySelectorAll('.filter-wrap input').forEach(el => el.checked = false);
+    document.querySelector('#search-field').value = '';
+    getDataAPI();
+}
+
+export {showTable,updateTable};

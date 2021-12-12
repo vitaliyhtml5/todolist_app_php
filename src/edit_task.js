@@ -6,27 +6,29 @@ const editTask = (req, res) => {
     try {
         getData.readData(res, './fs/tasks.json', (data) => {
             const taskIndex = checkData.checkExistedId(data, req.body.id);
+            const createdIndex = data.findIndex(item => item.id == req.body.id);
+            const createdValue = data[createdIndex].created;
              
-            if (req.body.id === undefined || req.body.task === undefined || req.body.comment === undefined || req.body.created === undefined || req.body.status === undefined || !checkData.checkEmptyData(req.body.id, req.body.task, req.body.comment, req.body.created, req.body.status)) {
+            if (req.body.id === undefined || req.body.task === undefined || req.body.comment === undefined || req.body.status === undefined || !checkData.checkEmptyData(req.body.id, req.body.task, req.body.comment, req.body.status)) {
                 res.status(400).send({code: 400, message: 'some data is missed'});
             } else if (req.body.status !== 'complete' && req.body.status !== 'incomplete') {
                 res.status(400).send({code: 400, message: 'value of status is incorrect'});
             } else if (taskIndex === -1) {
                 res.send({message: 'task does not exist'});
             } else {
-                rewriteFile(data);
+                rewriteFile(data, createdValue);
             }
         });
     } catch (e) {
         res.status(500).send('something went wrong');
     }
 
-    const rewriteFile = data => {
+    const rewriteFile = (data, createdValue) => {
         const editedTask = {
             id: req.body.id,
             task: req.body.task,
             comment: req.body.comment,
-            created: req.body.created,
+            created: createdValue,
             status: req.body.status
         }
 
