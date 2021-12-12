@@ -22,7 +22,7 @@ const setFilter = data => {
 const applyFilter = data => {
     const filterBtn = document.querySelectorAll('.filter-wrap-btn button');
     const filterWrap = document.querySelector('.filter-wrap');
-    openFilter(filterWrap);
+    openFilter(filterWrap, data);
 
     filterBtn[0].onclick = () => {
         showTable(data);
@@ -33,7 +33,21 @@ const applyFilter = data => {
 
 
 // Open/close filters
-function openFilter(filterWrap) {
+function openFilter(filterWrap, data) {
+    const label = document.querySelectorAll('.filter-wrap label');
+    const incomplete = data.find(item => item.status === 'incomplete');
+    const complete = data.find(item => item.status === 'complete');
+
+    if (incomplete === undefined) {
+        label[0].style.display = 'none';
+    } else if (complete === undefined) {
+        label[1].style.display = 'none';
+    } else {
+        label[0].style.display = 'block';
+        label[1].style.display = 'block';
+    }
+
+
     document.querySelector('.filter-btn').onclick = () => filterWrap.style.display = 'flex';
     removePropagation();
     document.onclick = () => {

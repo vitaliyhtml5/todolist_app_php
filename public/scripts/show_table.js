@@ -21,8 +21,6 @@ const showTable = data => {
 
     function createTable(start, end) {
         data = setFilter(allTasks);
-        
-        // if (data.length === 0) empty state !!!!!
         if (data.length < 10)  end = data.length;
 
         for (let i = start; i < end; i++) {

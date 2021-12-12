@@ -35,7 +35,7 @@ const showGetContent = () => `
     {
         "id": 2,
         "task": "Watch TV",
-        "comment": "Watch a comedy film",
+        "comment": "Watch a comedy",
         "created": "05.12.2021 20:59",
         "status": "incomplete"
     }

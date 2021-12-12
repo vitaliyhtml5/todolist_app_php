@@ -6,7 +6,6 @@ import {showAlert,showLoaderMain, closeLoaderMain} from './components.js';
 
 const removeData = taskId => {
     removeTask();
-    console.log(taskId)
     async function removeTask() {
         const res = await fetch(`/delete-task?id=${taskId}`, {
             method: 'DELETE'

@@ -1,6 +1,7 @@
 'use strict'
 
 import {showTable} from './show_table.js';
+import {showEmptyResults,removeEmptyResults} from './empty_state.js';
 
 const searchData = data => {
     const input = document.querySelector('#search-field');
@@ -20,15 +21,19 @@ const searchData = data => {
         }
 
         if (dataSearch.length > 0) {
+            removeEmptyResults();
+            document.querySelector('.paging-wrap').style.display = 'flex';
             showTable(dataSearch);
         } else {
-            console.log('empty state')
+            showEmptyResults();
+            document.querySelector('.paging-wrap').style.display = 'none';
             return;
-            // console.log('empty state');        !!!!!!Empty state
         }     
     });
 
     clearBtn.onclick = () => {
+        removeEmptyResults();
+        document.querySelector('.paging-wrap').style.display = 'flex';
         input.value = '';
         clearBtn.style.display = 'none';
         showTable(dataAll);
