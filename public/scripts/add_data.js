@@ -3,7 +3,7 @@
 import {checkEmptyField,checkLengthField} from './components.js';
 import {closeOverlay} from './get_modal.js';
 import {updateTable} from './show_table.js';
-import {showAlert} from './components.js';
+import {showAlert,showLoaderMain,closeLoaderMain} from './components.js';
 
 const addData = () => {
     const field = document.querySelectorAll('.modal textarea');
@@ -26,12 +26,18 @@ const addData = () => {
             body: JSON.stringify(data)
         });
         const result = await res.json();
+        showLoaderMain();
 
         if (result.message === 'task was created') {
-            updateTable();
-            closeOverlay();
-            showAlert('Task was created','success');
+            setTimeout(() => {
+                closeLoaderMain();
+                updateTable();
+                closeOverlay();
+                showAlert('Task was created','success');
+            }, 1000);
+            
         } else {
+            closeLoaderMain();
             showAlert('Task was not created','unsuccess');
         }
     }

@@ -41,6 +41,7 @@ const editData = taskId => {
                 showAlert('Task was edited','success');
             }, 500);
         } else {
+            closeLoaderMain();
             showAlert(result.message,'unsuccess');
         }
     }

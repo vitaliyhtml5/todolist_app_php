@@ -2,6 +2,7 @@
 
 import {addData} from './add_data.js';
 import {editData} from './edit_data.js';
+import {removeData} from './remove_data.js';
 import {getTask} from './components.js'
 
 const overlay = document.querySelector('.overlay');
@@ -13,6 +14,14 @@ const getEditModal = data => {
             const id = document.querySelectorAll('.id-task')[index].textContent;
             const task = getTask(data, id);
             editTaskModal(task);
+        }
+    });
+
+    document.querySelectorAll('.remove-task').forEach((el, index) => {
+        el.onclick = () => {
+            const id = document.querySelectorAll('.id-task')[index].textContent;
+            const task = getTask(data, id);
+            removeTaskModal(task);
         }
     });
 }
@@ -41,7 +50,16 @@ function editTaskModal(taskData) {
     field[1].value = taskData.comment;
     taskData.status === 'incomplete' ? radio[0].checked = true : radio[1].checked = true; 
 
-    btnModal[0].addEventListener('click', () =>  editData(taskData.id));
+    btnModal[0].addEventListener('click', () => editData(taskData.id));
+    btnModal[1].addEventListener('click', closeOverlay);
+}
+
+function removeTaskModal(taskData) {
+    createModal('remove');
+    const btnModal = document.querySelectorAll('.modal-remove-btn button');
+    document.querySelector('.modal-remove-text>span').textContent = taskData.task;
+
+    btnModal[0].addEventListener('click', () => removeData(taskData.id));
     btnModal[1].addEventListener('click', closeOverlay);
 }
 
@@ -89,6 +107,16 @@ function createModal(type) {
             <div class="modal-btn-wrap">
                 <button class="button-primary">Edit</button>
                 <button class="button-primary">Cancel</button>
+            </div>
+        </div>`;
+    } else if (type === 'remove') {
+        overlay.innerHTML = `
+        <div class="modal modal-remove">
+            <h3>Create task</h3>
+            <p class="modal-remove-text">Do you really want to remove the task <span></span> ?</p>
+            <div class="modal-btn-wrap modal-remove-btn">
+                <button class="button-primary">Remove</button>
+                <button class="button-secondary">Cancel</button>
             </div>
         </div>`;
     }

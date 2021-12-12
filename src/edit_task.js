@@ -6,8 +6,7 @@ const editTask = (req, res) => {
     try {
         getData.readData(res, './fs/tasks.json', (data) => {
             const taskIndex = checkData.checkExistedId(data, req.body.id);
-            const createdIndex = data.findIndex(item => item.id == req.body.id);
-            const createdValue = data[createdIndex].created;
+            const index = data.findIndex(item => item.id == req.body.id);
              
             if (req.body.id === undefined || req.body.task === undefined || req.body.comment === undefined || req.body.status === undefined || !checkData.checkEmptyData(req.body.id, req.body.task, req.body.comment, req.body.status)) {
                 res.status(400).send({code: 400, message: 'some data is missed'});
@@ -16,23 +15,23 @@ const editTask = (req, res) => {
             } else if (taskIndex === -1) {
                 res.send({message: 'task does not exist'});
             } else {
-                rewriteFile(data, createdValue);
+                rewriteFile(data, index);
             }
         });
     } catch (e) {
         res.status(500).send('something went wrong');
     }
 
-    const rewriteFile = (data, createdValue) => {
+    const rewriteFile = (data, index) => {
         const editedTask = {
             id: req.body.id,
             task: req.body.task,
             comment: req.body.comment,
-            created: createdValue,
+            created: data[index].created,
             status: req.body.status
         }
 
-        data.splice(req.body.id - 1, 1, editedTask);
+        data.splice(index, 1, editedTask);
         
         fs.writeFile('./fs/tasks.json', JSON.stringify(data), (err) => {
             if (err) {

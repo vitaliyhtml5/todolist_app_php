@@ -2,7 +2,8 @@
 
 import {getDataAPI} from '../script.js';
 import {setFilter,applyFilter} from './set_filter.js';
-import {getEditModal} from './get_modal.js'
+import {getEditModal} from './get_modal.js';
+import {editStatus} from './edit_status.js';
 
 const showTable = data => {
     const tbody = document.querySelector('#tbody-main');
@@ -42,6 +43,7 @@ const showTable = data => {
             </tr>`;
         }
         getEditModal(data);
+        editStatus(data);
 
         function setStatus(statusValue) {
             if (statusValue === 'incomplete') {
@@ -143,6 +145,8 @@ const updateTable = () => {
     document.querySelector('#tbody-main').innerHTML = ``;
     document.querySelectorAll('.filter-wrap input').forEach(el => el.checked = false);
     document.querySelector('#search-field').value = '';
+    document.querySelector('.search-wrap button').style.display = 'none';
+    document.querySelector('.sort-wrap b').style.transform = 'rotate(0deg)';
     getDataAPI();
 }
 

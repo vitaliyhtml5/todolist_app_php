@@ -6,6 +6,7 @@ const editStatus = (req, res) => {
     try {
         getData.readData(res, './fs/tasks.json', (data) => {
             const taskIndex = checkData.checkExistedId(data, req.body.id);
+            const index = data.findIndex(item => item.id == req.body.id);
 
             if (req.body.status === undefined || req.body.id === undefined || !checkData.checkEmptyData(req.body.status, req.body.id)) {
                 res.status(400).send({code: 400, message: 'some data is missed'});
@@ -14,16 +15,16 @@ const editStatus = (req, res) => {
             } else if (taskIndex === -1) {
                 res.send({message: 'task does not exist'});
             } else {
-                rewriteFile(data);
+                rewriteFile(data, index);
             }
         });
     } catch (e) {
         res.status(500).send('something went wrong');
     }
 
-    const rewriteFile = data => {
+    const rewriteFile = (data, index) => {
         const status = req.body.status;
-        data[req.body.id-1].status = req.body.status;
+        data[index].status = req.body.status;
         
         fs.writeFile('./fs/tasks.json', JSON.stringify(data), (err) => {
             if (err) {
