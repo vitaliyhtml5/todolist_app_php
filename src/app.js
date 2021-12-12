@@ -28,6 +28,6 @@ const deleteTask = require('./delete_task.js');
 app.delete('/delete-task', (req, res) => deleteTask(req, res));
 
 //404
-app.get('*/*', (req, res) => res.status(404).send('Page not found'));
+app.get('*/*', (req, res) => res.status(404).sendFile(`${path.join(__dirname,'../public')}/404.html`));
 
 app.listen(3000, console.log('Server is running on 3000 port'));

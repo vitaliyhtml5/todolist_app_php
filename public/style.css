@@ -73,6 +73,7 @@ header {
 main {
     padding: 10px 0;
 }
+
 /* Tools */
 .tools {
     position: relative;
@@ -450,6 +451,13 @@ main {
     margin-top: 10px;
     font-size: 25px;
 }
+.empty-data a {
+    width: 150px;
+    margin: 40px auto;
+    font-size: 18px;
+    text-decoration: none;
+    transition: .4s;
+}
 
 /* Modal */
 .overlay {
@@ -564,6 +572,7 @@ main {
 .modal-btn-wrap button:first-child {
     margin-right: 5px;
 }
+
 /* Modal remove */
 .modal-remove {
     width: 420px;
@@ -593,51 +602,6 @@ main {
 }
 .modal-remove-btn .button-primary:active {
     background-color: #f65555;
-}
-
-
-/* Animations and class for js */
-@keyframes openModal {
-    0% {
-        opacity: 0;
-        z-index: -1;
-    }
-    100% {
-        opacity: 1;
-        z-index: 50;
-    }
-}
-@keyframes closeModal {
-    0% {
-        opacity: 1;
-        z-index: 50;
-    }
-    100% {
-        opacity: 0;
-        z-index: -1;
-    }
-}
-@keyframes showAlert {
-    0% {
-        opacity: 0.9;
-        z-index: 100;
-    }
-    80% {
-        opacity: 0.9;
-        z-index: 100;
-    }
-    100% {
-        opacity: 0;
-        z-index: -1;
-    }
-}
-@keyframes startLoader {
-    0% {
-        transform: translate(-50%, -50%) rotate(0deg);
-    }
-    100% {
-        transform: translate(-50%, -50%) rotate(360deg);
-    }
 }
 
 /* Media queries */
@@ -721,5 +685,49 @@ main {
     }
     .modal .edit-radio {
         margin-bottom: 10px;
+    }
+}
+
+/* Animations*/
+@keyframes openModal {
+    0% {
+        opacity: 0;
+        z-index: -1;
+    }
+    100% {
+        opacity: 1;
+        z-index: 50;
+    }
+}
+@keyframes closeModal {
+    0% {
+        opacity: 1;
+        z-index: 50;
+    }
+    100% {
+        opacity: 0;
+        z-index: -1;
+    }
+}
+@keyframes showAlert {
+    0% {
+        opacity: 0.9;
+        z-index: 100;
+    }
+    80% {
+        opacity: 0.9;
+        z-index: 100;
+    }
+    100% {
+        opacity: 0;
+        z-index: -1;
+    }
+}
+@keyframes startLoader {
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+    100% {
+        transform: translate(-50%, -50%) rotate(360deg);
     }
 }

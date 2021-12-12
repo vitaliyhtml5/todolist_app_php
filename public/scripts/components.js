@@ -63,5 +63,4 @@ const getTask = (data, id) => {
     return data[task];
 }
 
-
 export {checkEmptyField,checkLengthField,showAlert,showLoaderMain,closeLoaderMain,getTask};

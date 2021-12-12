@@ -21,6 +21,7 @@ const showTable = data => {
 
     function createTable(start, end) {
         data = setFilter(allTasks);
+
         if (data.length < 10)  end = data.length;
 
         for (let i = start; i < end; i++) {
@@ -40,6 +41,7 @@ const showTable = data => {
                 </td>
             </tr>`;
         }
+
         getEditModal(data);
         editStatus(data);
 
@@ -92,10 +94,12 @@ const showTable = data => {
     
     function setDefaultPagination(btnPage) {
         btnPage[0].classList.add('paging-btn-active');
+
         if (btnPage.length > 5) {
             btnPage.forEach((el, index) => {
                 if (index > 4) el.style.display = 'none';
             });
+            
             paginationWrap.innerHTML += `<span class="material-icons-outlined extra-pagination-prev">navigate_before</span><span class="material-icons-outlined extra-pagination-next">navigate_next</span>`;
             paginationWrap.prepend(document.querySelector('.extra-pagination-prev'));
             

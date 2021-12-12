@@ -65,6 +65,7 @@ function removeTaskModal(taskData) {
 
 function createModal(type) {
     showOverlay();
+    
     if (type === 'add') {
         overlay.innerHTML = `
         <div class="modal">

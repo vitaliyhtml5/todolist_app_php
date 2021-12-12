@@ -16,8 +16,7 @@ const getAllData = (req, res) => {
     }
 };
 
-// Get by id  
-//get-task?id=1
+// get-task?id=1
 const getDataById = (req, res) => {
     try {
         readData(res, './fs/tasks.json', (data) => {
