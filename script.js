@@ -10,7 +10,7 @@ import {showEmptyState,removeEmptyState} from './scripts/empty_state.js';
 getDataAPI();
 async function getDataAPI() {
     showLoaderMain();
-    const res = await fetch('/get-all-tasks');
+    const res = await fetch('php_scripts/get_all_tasks.php');
     const data = await res.json();
     closeLoaderMain();
 

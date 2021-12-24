@@ -8,7 +8,7 @@ const showDeleteContent = () => `
         <div class="method"><span class="method-delete">DELETE</span> method</div>
         <div class="desc-block-url">
             <h3>URL:</h3>
-            <i>/delete-task</i>
+            <i>/php_scripts/delete_task.php</i>
         </div>
         <div class="desc-block header-param">
             <h3>Parameters:</h3>

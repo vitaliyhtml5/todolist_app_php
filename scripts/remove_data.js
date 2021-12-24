@@ -7,7 +7,7 @@ import {showAlert,showLoaderMain, closeLoaderMain} from './components.js';
 const removeData = taskId => {
     removeTask();
     async function removeTask() {
-        const res = await fetch(`/delete-task?id=${taskId}`, {
+        const res = await fetch(`php_scripts/delete_task.php?id=${taskId}`, {
             method: 'DELETE'
         });
         const result = await res.json();

@@ -18,7 +18,7 @@ const addData = () => {
             task: field[0].value,
             comment: field[1].value
         }
-        const res = await fetch('/add-task', {
+        const res = await fetch('php_scripts/add_task.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

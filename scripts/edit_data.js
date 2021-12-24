@@ -23,7 +23,7 @@ const editData = taskId => {
             comment: field[1].value,
             status: taskStatus
         }
-        const res = await fetch(`/edit-task`, {
+        const res = await fetch(`php_scripts/edit_task.php`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'

@@ -8,7 +8,7 @@ const showEditContent = () => `
         <div class="method"><span class="method-put">PUT</span> method</div>
         <div class="desc-block-url">
             <h3>URL:</h3>
-            <i>/edit-task</i>
+            <i>/php_scripts/edit_task.php</i>
         </div>
         <div class="desc-block">
             <h3>Parameters:</h3>
@@ -63,7 +63,7 @@ const showEditContent = () => `
         <div class="method"><span class="method-patch">PATCH</span> method</div>
         <div class="desc-block-url">
             <h3>URL:</h3>
-            <i>/edit-status</i>
+            <i>/php_scripts/edit_status.php</i>
         </div>
         <div class="desc-block">
             <h3>Parameters:</h3>

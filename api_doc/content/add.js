@@ -8,7 +8,7 @@ const showAddContent = () => `
         <div class="method"><span class="method-post">POST</span> method</div>
         <div class="desc-block-url">
             <h3>URL:</h3>
-            <i>/add-task</i>
+            <i>/php_scripts/add_task.php</i>
         </div>
         <div class="desc-block">
             <h3>Parameters:</h3>

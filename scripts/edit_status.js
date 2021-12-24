@@ -19,10 +19,10 @@ const editStatus = data => {
 
     async function editData(taskId, taskStatus) {
         const data = {
-            id: taskId,
+            id: +taskId,
             status: taskStatus
         }
-        const res = await fetch(`/edit-status`, {
+        const res = await fetch(`php_scripts/edit_status.php`, {
             method: 'PATCH',
             headers: {
                 'Content-type': 'application/json'
