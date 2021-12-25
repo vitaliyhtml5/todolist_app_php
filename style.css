@@ -64,6 +64,7 @@ header {
     background-color: #20bb92;
 }
 .header-wrap {
+    position: relative;
     padding: 10px 0;
     color: #3e3e3e;
     text-align: center;
@@ -74,8 +75,32 @@ header {
 .header-wrap span {
     font-size: 25px;
 }
+.header-wrap .logout-btn {
+    position: absolute;
+    top: 55%;
+    right: 0;
+    width: 40px;
+    height: 40px;
+    color: #3e3e3e;
+    font-size: 22px;
+    transform: translateY(-50%);
+}
 main {
     padding: 10px 0;
+}
+
+/* Login page */
+.login-form {
+    width: 300px;
+    margin: 50px auto 20px;
+}
+.login-form label {
+    display: block;
+    margin-bottom: 20px;
+}
+.login-form button {
+    width: 140px;
+    margin: 25px 0 0 auto;
 }
 
 /* Tools */
@@ -110,7 +135,8 @@ main {
     opacity: 0.4;
     transform: translateY(-50%);
 }
-.search-wrap #search-field {
+.search-wrap #search-field,
+.login-form input {
     min-height: 0 !important;
     margin: 0 !important;
     padding: 5px 25px 5px 25px;
@@ -534,9 +560,9 @@ main {
 .edit-radio input:checked+span {
     display: block;
 }
-
 .modal textarea,
-.search-wrap input {
+.search-wrap input,
+.login-form input {
     display: block;
     width: 100%;
     min-height: 80px;
@@ -552,7 +578,8 @@ main {
     resize: vertical;
 }
 .modal textarea:focus,
-.search-wrap input:focus {
+.search-wrap input:focus,
+.login-form input:focus {
     border-color: #11664f;
 }
 .error-message {
@@ -715,11 +742,11 @@ main {
 }
 @keyframes showAlert {
     0% {
-        opacity: 0.9;
+        opacity: 1;
         z-index: 100;
     }
     80% {
-        opacity: 0.9;
+        opacity: 1;
         z-index: 100;
     }
     100% {
