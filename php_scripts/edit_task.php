@@ -3,11 +3,14 @@
 require_once('./server_res.php');
 require_once('./set_file.php');
 require_once('./validate_data.php');
+require_once('./check_token.php');
 
 $data = json_decode(file_get_contents('php://input'), true);
 $data_file = get_data();
 
-if (empty($data['id']) || empty($data['task']) || empty($data['comment']) || empty($data['status'])) {
+if (!checkToken()) {
+    get_res(401, 'Access is not allowed');
+} elseif (empty($data['id']) || empty($data['task']) || empty($data['comment']) || empty($data['status'])) {
     get_res(400, 'some data is missed');
 } elseif ($data['status'] !== 'complete' && $data['status'] !== 'incomplete') {
     get_res(400, 'value of status is incorrect');
